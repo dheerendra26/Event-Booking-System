@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { register } from "../api/eventAPI";
+import { GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -38,6 +40,25 @@ const Register = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, [showLoader]);
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/users/google`,
+        {
+          token: credentialResponse.credential,
+        },
+      );
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      alert("Google login failed");
+    }
+  };
 
   if (showLoader) {
     return (
@@ -122,6 +143,12 @@ const Register = () => {
       >
         {loading ? "Please wait..." : "Register"}
       </button>
+      <div className="flex justify-center mt-4">
+        <GoogleLogin
+          onSuccess={handleGoogleSuccess}
+          onError={() => console.log("Login Failed")}
+        />
+      </div>
     </form>
   );
 };

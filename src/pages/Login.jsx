@@ -41,6 +41,26 @@ const Login = () => {
     return () => clearInterval(interval);
   }, [showLoader]);
 
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/users/google`,
+        {
+          token: credentialResponse.credential,
+        },
+      );
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      alert("Google login failed");
+    }
+  };
+
   if (showLoader) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen space-y-6">
@@ -82,25 +102,6 @@ const Login = () => {
       </div>
     );
   }
-
-  const handleGoogleSuccess = async (credentialResponse) => {
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/users/google`,
-        {
-          token: credentialResponse.credential,
-        },
-      );
-
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-
-      navigate("/");
-    } catch (err) {
-      console.error(err);
-      alert("Google login failed");
-    }
-  };
 
   return (
     <form
