@@ -132,11 +132,10 @@ const Login = () => {
       >
         {loading ? "Please wait..." : "Login"}
       </button>
-      <div className="w-full">
+      <div className="flex justify-center mt-4">
         <GoogleLogin
           onSuccess={handleGoogleSuccess}
           onError={() => console.log("Login Failed")}
-          width="100%"
         />
       </div>
     </form>
