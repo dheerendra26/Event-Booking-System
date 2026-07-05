@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { login } from "../api/eventAPI";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -81,6 +83,25 @@ const Login = () => {
     );
   }
 
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/users/google`,
+        {
+          token: credentialResponse.credential,
+        },
+      );
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      alert("Google login failed");
+    }
+  };
+
   return (
     <form
       onSubmit={handleLogin}
@@ -111,6 +132,10 @@ const Login = () => {
       >
         {loading ? "Please wait..." : "Login"}
       </button>
+      <GoogleLogin
+        onSuccess={handleGoogleSuccess}
+        onError={() => console.log("Login Failed")}
+      />
     </form>
   );
 };
