@@ -8,6 +8,18 @@
 
 ---
 
+## 🖥️ Live Demo
+
+👉 **[Click Here to Explore the App](https://event-bookin.netlify.app/)** 
+
+Login as admin to use it at full potential - 
+```bash
+username : admin1@gmail.com
+password : 1234
+```
+
+---
+
 ## 🚀 Features
 
 - User **signup** and **login** powered by JWT authentication  
@@ -90,19 +102,6 @@
    - Submit a **review**
    - Write **comments**
 
----
-
-## 🖥️ Live Demo
-
-👉 **[Click Here to Explore the App](https://event-bookin.netlify.app/)** 
-
-👉 **[Click Here to Explore the App](https://event-bookin-system.vercel.app/)**
-
-Login as admin to use it at full potential - 
-```bash
-username : admin1@gmail.com
-password : 1234
-```
 ---
 
 ## 📦 Installation
