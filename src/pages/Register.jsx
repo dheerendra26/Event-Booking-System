@@ -149,6 +149,36 @@ const Register = () => {
           onError={() => console.log("Login Failed")}
         />
       </div>
+      <div className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
+        <div className="flex items-start gap-3">
+          <div className="text-xl">ℹ️</div>
+
+          <div className="space-y-2 text-sm">
+            <h3 className="font-semibold text-blue-900">
+              Demo Administrator Account
+            </h3>
+
+            <p className="text-blue-800">
+              Want to explore all features? Use the demo administrator account
+              below.
+            </p>
+
+            <div className="rounded-md bg-white p-3 border border-blue-100">
+              <p>
+                <span className="font-medium">Email:</span> admin1@gmail.com
+              </p>
+              <p>
+                <span className="font-medium">Password:</span> 1234
+              </p>
+            </div>
+
+            <p className="text-xs text-blue-700">
+              This is a public demo account intended for testing only. Please do
+              not store personal or sensitive information while using it.
+            </p>
+          </div>
+        </div>
+      </div>
     </form>
   );
 };
