@@ -132,10 +132,13 @@ const Login = () => {
       >
         {loading ? "Please wait..." : "Login"}
       </button>
-      <GoogleLogin
-        onSuccess={handleGoogleSuccess}
-        onError={() => console.log("Login Failed")}
-      />
+      <div className="w-full">
+        <GoogleLogin
+          onSuccess={handleGoogleSuccess}
+          onError={() => console.log("Login Failed")}
+          width="100%"
+        />
+      </div>
     </form>
   );
 };
