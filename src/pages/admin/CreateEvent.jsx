@@ -138,13 +138,13 @@ const CreateEvent = () => {
         </div>
 
         {[
-          "organizer_name",
-          "organizer_email",
-          "category",
-          "tags",
-          "banner_image_url",
-          "thumbnail_url",
-          "meeting_link",
+          "Organizer_Name",
+          "Organizer_Email",
+          "Category",
+          "Tags",
+          "Banner_Image_Url",
+          "Thumbnail_Url",
+          "Meeting_Link",
         ].map((field) => (
           <div key={field}>
             <Label name={field.replaceAll("_", " ")} />
