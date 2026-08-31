@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import API, { fetchEventById, fetchReviews } from "../../api/eventAPI";
+import API, { deleteEvent, fetchEventById, fetchReviews } from "../../api/eventAPI";
 import Loader from "../../components/Loader";
 
 const EventSummary = () => {
@@ -58,9 +58,9 @@ const EventSummary = () => {
     if (!confirmDelete) return;
 
     try {
-      await API.delete(`/events/${event.id}`);
+      await deleteEvent(event.id)
       alert("Event deleted successfully");
-      navigate("/admin/events");
+      navigate("/admin/all-events");
     } catch (err) {
       console.error("Error deleting event:", err);
       alert("Failed to delete event");

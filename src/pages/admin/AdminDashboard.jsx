@@ -44,7 +44,7 @@ const AdminDashboard = () => {
             👤 Create User
           </NavLink>
           <NavLink
-            to="/admin/allevents"
+            to="/admin/all-events"
             className={({ isActive }) =>
               `block px-3 py-2 rounded ${
                 isActive
