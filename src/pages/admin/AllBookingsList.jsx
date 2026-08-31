@@ -69,7 +69,7 @@ const AllBookingsList = () => {
 
       <ul className="space-y-3">
         {filteredBookings.length === 0 ? (
-          <p className="text-center text-gray-500">
+          <p className="text-center text-gray-500 mt-32">
             No matching bookings found.
           </p>
         ) : (

@@ -110,8 +110,8 @@ const Events = () => {
         </div>
 
         {filteredEvents.length === 0 ? (
-          <div className="flex justify-center items-end h-[60vh]">
-            <p className="text-center text-gray-500">
+          <div className="flex justify-center items-center h-[45vh]">
+            <p className="text-center text-gray-500 mt-32">
               🚫 No events match your filter criteria.
             </p>
           </div>

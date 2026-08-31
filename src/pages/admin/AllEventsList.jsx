@@ -14,7 +14,7 @@ const AllEventsList = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       try {
         const res = await fetchEvents(user.id, user.role);
-        
+
         setEvents(res.data);
       } catch (err) {
         console.error("Failed to fetch events:", err);
@@ -70,7 +70,9 @@ const AllEventsList = () => {
 
       <ul className="space-y-3">
         {filteredEvents.length === 0 ? (
-          <p className="text-center text-gray-500">No matching events found.</p>
+          <p className="text-center text-gray-500 mt-32">
+            No matching events found.
+          </p>
         ) : (
           filteredEvents.map((event) => (
             <li
