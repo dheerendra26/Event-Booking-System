@@ -8,12 +8,12 @@ export default function Features() {
           <p>Book your favorite events in just a few clicks.</p>
         </div>
         <div>
-          <h3 className="font-semibold text-lg mb-2">Secure Payments</h3>
-          <p>Pay safely through trusted payment gateways.</p>
+          <h3 className="font-semibold text-lg mb-2">Discover Great Events</h3>
+          <p>Explore a variety of exciting events in one place.</p>
         </div>
         <div>
           <h3 className="font-semibold text-lg mb-2">Verified Listings</h3>
-          <p>All events are reviewed and approved.</p>
+          <p>Find events with reliable and accurate information.</p>
         </div>
       </div>
     </section>
