@@ -123,7 +123,7 @@ const EventSummary = () => {
 
       <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-6 mb-4">
         <button
-          onClick={() => navigate(`/admin/editevent/${event.id}`)}
+          onClick={() => navigate(`/admin/edit-event/${event.id}`)}
           className="text-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
         >
           ✏️ Edit Event

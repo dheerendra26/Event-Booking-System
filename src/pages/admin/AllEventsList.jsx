@@ -213,7 +213,7 @@ const AllEventsList = () => {
             {events.map((event) => (
               <li
                 key={event.id}
-                onClick={() => navigate(`/admin/eventsummary/${event.id}`)}
+                onClick={() => navigate(`/admin/event-summary/${event.id}`)}
                 className="cursor-pointer p-4 border rounded-lg shadow hover:bg-gray-100 transition"
               >
                 <h3 className="text-lg font-semibold">{event.title}</h3>

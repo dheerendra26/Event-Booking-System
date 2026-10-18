@@ -8,7 +8,7 @@ const AdminDashboard = () => {
         <aside className="w-full md:w-60 bg-gray-100 border-b md:border-b-0 md:border-r p-4 space-y-4">
           <h2 className="text-xl font-bold mb-4">Admin Panel</h2>
           <NavLink
-            to="/admin/allbookings"
+            to="/admin/all-bookings"
             className={({ isActive }) =>
               `block px-3 py-2 rounded ${
                 isActive
@@ -20,7 +20,7 @@ const AdminDashboard = () => {
             📋 All Bookings
           </NavLink>
           <NavLink
-            to="/admin/createevent"
+            to="/admin/create-event"
             className={({ isActive }) =>
               `block px-3 py-2 rounded ${
                 isActive
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
             🗓️ Create Event
           </NavLink>
           <NavLink
-            to="/admin/createuser"
+            to="/admin/create-user"
             className={({ isActive }) =>
               `block px-3 py-2 rounded ${
                 isActive

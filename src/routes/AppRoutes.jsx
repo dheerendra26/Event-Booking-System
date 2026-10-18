@@ -51,12 +51,12 @@ const AppRoutes = () => {
       />
       <Route element={<AdminRoute />}>
         <Route path="/admin" element={<AdminDashboard />}>
-          <Route path="allbookings" element={<AllBookingsList />} />
-          <Route path="createevent" element={<CreateEvent />} />
-          <Route path="createuser" element={<CreateUser />} />
+          <Route path="all-bookings" element={<AllBookingsList />} />
+          <Route path="create-event" element={<CreateEvent />} />
+          <Route path="create-user" element={<CreateUser />} />
           <Route path="all-events" element={<AllEventsList />} />
-          <Route path="editevent/:id" element={<EditEvent />} />
-          <Route path="eventsummary/:id" element={<EventSummary />} />
+          <Route path="edit-event/:id" element={<EditEvent />} />
+          <Route path="event-summary/:id" element={<EventSummary />} />
           <Route index element={<AllBookingsList />} />
         </Route>
       </Route>

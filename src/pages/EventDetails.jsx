@@ -87,7 +87,7 @@ const EventDetails = () => {
   };
 
   const handleEdit = () => {
-    navigate(`/admin/editevent/${event.id}`);
+    navigate(`/admin/edit-event/${event.id}`);
   };
   const handleSubmitReview = async () => {
     try {
