@@ -18,3 +18,62 @@ code {
 }
 
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-glow {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(16px, -14px) scale(1.08);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.hero-orb {
+  animation: float-glow 9s ease-in-out infinite;
+}
+
+.hero-orb-delay {
+  animation-delay: -4.5s;
+}
+
+.cta-glow {
+  animation: float-glow 10s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .hero-orb,
+  .cta-glow {
+    animation: none;
+  }
+
+  .animate-fade-up {
+    opacity: 1;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
