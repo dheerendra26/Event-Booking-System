@@ -4,7 +4,7 @@ import { fetchEvents } from "../api/eventAPI";
 import EventCard from "../components/EventCard";
 import Loader from "../components/Loader";
 import Footer from "../components/Footer";
-import { EVENTS_PER_PAGE } from "../utils/constants";
+import { DEBOUNCE_DELAY, EVENTS_PER_PAGE } from "../utils/constants";
 
 const initialFilters = {
   location: "",
@@ -17,10 +17,10 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [filters, setFilters] = useState(initialFilters);
+  const [debouncedLocation, setDebouncedLocation] = useState("");
   const [totalEvents, setTotalEvents] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showFilters, setShowFilters] = useState(false);
-
   const currentPage = Math.max(
     1,
     Number.parseInt(searchParams.get("page") || "1", 10) || 1,
@@ -56,6 +56,18 @@ const Events = () => {
     );
   }, [currentPage, setSearchParams]);
 
+  const { location } = filters;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedLocation(location.trim());
+    }, DEBOUNCE_DELAY);
+
+    return () => clearTimeout(timer);
+  }, [location]);
+
+  const { category, priceRange } = filters;
+
   useEffect(() => {
     let active = true;
 
@@ -75,7 +87,11 @@ const Events = () => {
           "user",
           currentPage,
           EVENTS_PER_PAGE,
-          filters,
+          {
+            category,
+            priceRange,
+            location: debouncedLocation,
+          },
         );
 
         if (active) {
@@ -95,7 +111,7 @@ const Events = () => {
     return () => {
       active = false;
     };
-  }, [navigate, currentPage, filters]);
+  }, [navigate, currentPage, category, priceRange, debouncedLocation]);
 
   const totalPages = Math.ceil(totalEvents / EVENTS_PER_PAGE);
 

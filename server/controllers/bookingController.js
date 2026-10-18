@@ -13,7 +13,7 @@ const bookEvent = (req, res) => {
     (err, result) => {
       if (err) return res.status(500).json({ error: err });
       res.status(201).json({ message: "Event booked successfully" });
-    }
+    },
   );
 };
 
@@ -26,15 +26,35 @@ const getMyBookings = (req, res) => {
 };
 
 const getAllBookings = (req, res) => {
-  const { userId, role } = req.query;
+  const { userId, search, location, date } = req.query;
 
   if (!userId) {
     return res.status(400).json({ error: "Missing user ID" });
   }
 
-  bookingModel.getAllBookings(userId, (err, bookings) => {
-    if (err) return res.status(500).json({ error: err });
-    res.json(bookings);
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+  const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 10));
+  const offset = (page - 1) * limit;
+
+  const filters = {
+    search: typeof search === "string" ? search.trim() : "",
+    location: typeof location === "string" ? location.trim() : "",
+    date: typeof date === "string" ? date : "",
+  };
+
+  bookingModel.getAllBookings(userId, limit, offset, filters, (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to fetch bookings" });
+    }
+
+    res.json({
+      bookings: result.bookings,
+      total: result.total,
+      page,
+      limit,
+      totalPages: Math.ceil(result.total / limit),
+    });
   });
 };
 

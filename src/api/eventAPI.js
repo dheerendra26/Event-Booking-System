@@ -34,8 +34,24 @@ export const bookEvent = (event_id, number_of_people = 1) =>
 export const login = (credentials) => API.post("/users/login", credentials);
 export const register = (data) => API.post("/users/register", data);
 export const fetchMyBookings = () => API.get("/bookings/me");
-export const fetchAllBookings = (userId, role) =>
-  API.get(`/bookings/admin?userId=${userId}&role=${role}`);
+export const fetchAllBookings = (
+  userId,
+  role,
+  page = 1,
+  limit = 10,
+  filters = {},
+) =>
+  API.get("/bookings/admin", {
+    params: {
+      userId,
+      role,
+      page,
+      limit,
+      search: (filters.search || "").trim(),
+      location: (filters.location || "").trim(),
+      date: filters.date || "",
+    },
+  });
 
 export const checkBooking = (userId, eventId) =>
   API.get(`/bookings/check-booking/${userId}/${eventId}`);
