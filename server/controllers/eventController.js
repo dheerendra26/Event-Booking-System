@@ -64,23 +64,39 @@ const createEvent = (req, res) => {
         message: "Event created successfully",
         eventId: result.insertId,
       });
-    }
+    },
   );
 };
 
 const getEvents = (req, res) => {
-  const { userId, role } = req.query;
-  eventModel.getAllEvents(userId, role, (err, events) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).json({ error: err });
-    }
-    if (events.length > 0) {
-      res.json(events);
-    } else {
-      res.json([]);
-    }
-  });
+  const { userId, role, location, category, priceRange, search, date } =
+    req.query;
+
+  const filters = {
+    location: typeof location === "string" ? location.trim() : "",
+    category: typeof category === "string" ? category : "",
+    priceRange: typeof priceRange === "string" ? priceRange : "",
+    search: typeof search === "string" ? search.trim() : "",
+    date: typeof date === "string" ? date : "",
+  };
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+  const limit = Math.min(50, Math.max(1, parseInt(req.query.limit, 10) || 9));
+  const offset = (page - 1) * limit;
+
+  eventModel.getAllEvents(
+    userId,
+    role,
+    limit,
+    offset,
+    filters,
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Failed to fetch events" });
+      }
+      res.json(result);
+    },
+  );
 };
 
 const getEvent = (req, res) => {
@@ -178,5 +194,5 @@ module.exports = {
   getEvent,
   updateEvent,
   getAttendeesCount,
-  deleteEvent
+  deleteEvent,
 };

@@ -12,8 +12,20 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
-export const fetchEvents = (userId, role) =>
-  API.get(`/events?userId=${userId}&role=${role}`);
+export const fetchEvents = (userId, role, page = 1, limit = 9, filters = {}) =>
+  API.get("/events", {
+    params: {
+      userId,
+      role,
+      page,
+      limit,
+      location: (filters.location || "").trim(),
+      category: filters.category || "",
+      priceRange: filters.priceRange || "",
+      search: (filters.search || "").trim(),
+      date: filters.date || "",
+    },
+  });
 
 export const fetchEventById = (id) => API.get(`/events/${id}`);
 export const bookEvent = (event_id, number_of_people = 1) =>

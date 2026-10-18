@@ -6,7 +6,7 @@ export default function Footer() {
           href="/"
           className="inline-block text-lg font-bold tracking-tight text-white transition-colors duration-300 hover:text-blue-400"
         >
-          Event Booking<span className="text-blue-500">.</span>
+          Event Booking System<span className="text-blue-500">.</span>
         </a>
 
         <p className="mt-3 text-sm leading-6 text-gray-400">
@@ -16,7 +16,8 @@ export default function Footer() {
         <div className="mx-auto my-6 h-px max-w-md bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
 
         <p className="text-sm text-gray-500">
-          © {new Date().getFullYear()} Event Booking. All rights reserved.
+          © {new Date().getFullYear()} Event Booking System. All rights
+          reserved.
         </p>
       </div>
     </footer>
